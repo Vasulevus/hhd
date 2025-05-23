@@ -1,19 +1,6 @@
 #!/usr/bin/bash
 # Installs Handheld Daemon to ~/.local/share/hhd
 
-if [ "$EUID" = 0 ]; then 
-  echo "You should run this script as your user, not root (sudo)."
-  exit
-fi
-
-is_bazzite=$(cat /etc/os-release  | sed -e 's/\(.*\)/\L\1/' | grep bazzite-deck)
-if [ "${is_bazzite}" ]; then
-  echo "Handheld Daemon is preinstalled on bazzite-deck."
-  echo "If your device is not whitelisted, you can enable Handheld Daemon with the command:"
-  echo "sudo systemctl enable --now hhd@\$(whoami)"
-  exit
-fi
-
 set -e
 
 # Install Handheld Daemon to ~/.local/share/hhd
