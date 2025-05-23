@@ -1,22 +1,13 @@
-#!/usr/bin/bash
-# Installs Handheld Daemon to ~/.local/share/hhd
-
 set -e
-
-# Install Handheld Daemon to ~/.local/share/hhd
 mkdir -p ~/.local/share/hhd && cd ~/.local/share/hhd
 python3 -m venv --system-site-packages venv
 source venv/bin/activate
 pip3 install --upgrade hhd adjustor
-
-# Install udev rules and create a service file
 sudo mkdir -p /etc/udev/rules.d/
 sudo mkdir -p /etc/udev/hwdb.d/
 sudo curl https://raw.githubusercontent.com/hhd-dev/hhd/master/usr/lib/udev/rules.d/83-hhd.rules -o /etc/udev/rules.d/83-hhd.rules
 sudo curl https://raw.githubusercontent.com/hhd-dev/hhd/master/usr/lib/udev/hwdb.d/83-hhd.hwdb -o /etc/udev/hwdb.d/83-hhd.hwdb
 sudo curl https://raw.githubusercontent.com/hhd-dev/hhd/master/usr/lib/systemd/system/hhd_local%40.service -o /etc/systemd/system/hhd_local@.service
-
-# Add hhd to user path
 mkdir -p ~/.local/bin
 ln -sf ~/.local/share/hhd/venv/bin/hhd ~/.local/bin/hhd
 ln -sf ~/.local/share/hhd/venv/bin/hhd.contrib ~/.local/bin/hhd.contrib
