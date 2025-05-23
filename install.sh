@@ -5,7 +5,6 @@ set -e
 
 # Install Handheld Daemon to ~/.local/share/hhd
 mkdir -p ~/.local/share/hhd && cd ~/.local/share/hhd
-
 python3 -m venv --system-site-packages venv
 source venv/bin/activate
 pip3 install --upgrade hhd adjustor
